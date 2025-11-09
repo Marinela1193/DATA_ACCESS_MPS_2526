@@ -79,5 +79,15 @@ public class Agenda {
             System.out.println("The list is empty");
         }
     }
+
+    public void addContacts(List<Contact> importedContacts) throws IOException, ClassNotFoundException {
+        if(!file.exists()){
+            try (ObjectInputStream inputFile = new ObjectInputStream(new FileInputStream(file))) {
+                contacts = (List<Contact>) inputFile.readObject();
+            } catch (EOFException | ClassNotFoundException e) {
+                contacts = new ArrayList<>();
+            }
+        }
+    }
 }
 

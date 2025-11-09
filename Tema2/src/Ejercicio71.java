@@ -6,10 +6,15 @@ show the current list of contacts and search for a contact by its full name
 or phone. Data must be stored and retrieved in a file named contacts.obj. if it
 doesn't exist, it must be created*/
 
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class Ejercicio71 {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -20,11 +25,12 @@ public class Ejercicio71 {
         int option;
 
         do{
-            System.out.println("MENÚ");
-            System.out.println("1. Crear nuevo contacto");
-            System.out.println("2. Mostrar lista contactos");
-            System.out.println("3. Buscar un contacto");
-            System.out.println("4. Salir");
+            System.out.println("MENU");
+            System.out.println("1. Create a new contact");
+            System.out.println("2. Show the contact list");
+            System.out.println("3. Search a contact");
+            System.out.println("4. Export contact list from XML");
+            System.out.println("5. Exit");
 
             option = sc.nextInt();
             sc.nextLine();
@@ -57,12 +63,26 @@ public class Ejercicio71 {
                     name = sc.nextLine();
                     agenda.SearchContact(name);
                     break;
-
                 case 4:
+                    System.out.println("Exporting the contact list in the XML file");
+                    try {
+                        SAXParser saxParser = SAXParserFactory.
+                                newInstance().newSAXParser();
+                        saxParser.parse("SAX", new
+                                EjercicioSAX());
+
+                        List<Contact> imported = EjercicioSAX.getContactList();
+                        agenda.addContacts(imported);
+
+                    } catch (ParserConfigurationException | SAXException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                case 5:
                     System.out.println("Exit successful");
                     break;
             }
         }
-        while(option != 4);
+        while(option != 5);
     }
 }

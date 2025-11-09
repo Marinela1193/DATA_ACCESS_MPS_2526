@@ -1,0 +1,81 @@
+<contactlist>
+    <contact id="001">
+        <name>Laura</name>
+        <surname>García</surname>
+        <email>laura.garcia@gmail.com</email>
+        <phone>+34 612 345 678</phone>
+        <description>Neighbour of 5ºA</description>
+    </contact>
+
+    <contact id="002">
+        <name>Carlos</name>
+        <surname>Fernández</surname>
+        <email>cfernandez@techcorp.es</email>
+        <phone>+34 611 223 344</phone>
+        <description>Dentist</description>
+    </contact>
+
+    <contact id="003">
+        <name>Ana</name>
+        <surname>López</surname>
+        <email>ana.lopez@creativos.com</email>
+        <phone>+34 699 554 321</phone>
+        <description>Colleague at work</description>
+    </contact>
+
+    <contact id="004">
+        <name>Javier</name>
+        <surname>Martínez</surname>
+        <email>jmartinez@consulting.net</email>
+        <phone>+34 678 112 233</phone>
+        <description>Administrative</description>
+    </contact>
+
+    <contact id="005">
+        <name>Lucía</name>
+        <surname>Rodríguez</surname>
+        <email>lucia.rod@gmail.com</email>
+        <phone>+34 622 334 455</phone>
+        <description>President of the community of neighbours</description>
+    </contact>
+
+    <contact id="006">
+        <name>Pedro</name>
+        <surname>Moreno</surname>
+        <email>pedro.moreno@universidad.edu</email>
+        <phone>+34 633 789 012</phone>
+        <description>English Teacher</description>
+    </contact>
+
+    <contact id="007">
+        <name>Sofía</name>
+        <surname>Ramírez</surname>
+        <email>sofiam@startuplab.com</email>
+        <phone>+34 644 555 666</phone>
+        <description>Boss</description>
+    </contact>
+
+    <contact id="008">
+        <name>Miguel</name>
+        <surname>Santos</surname>
+        <email>miguels@gmail.com</email>
+        <phone>+34 655 888 999</phone>
+        <description>Colleague</description>
+    </contact>
+
+    <contact id="009">
+        <name>Elena</name>
+        <surname>Navarro</surname>
+        <email>elenanavarro@hotmail.com</email>
+        <phone>+34 677 445 332</phone>
+        <description>Girlfriend of Colleage</description>
+    </contact>
+
+    <contact id="010">
+        <name>Diego</name>
+        <surname>Suárez</surname>
+        <email>diegos@icloud.com</email>
+        <phone>+34 666 111 222</phone>
+        <description>Hairdresser</description>
+    </contact>
+</contactlist>
