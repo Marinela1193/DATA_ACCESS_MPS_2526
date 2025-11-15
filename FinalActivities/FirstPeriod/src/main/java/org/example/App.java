@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,6 +17,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -95,6 +97,12 @@ public class App {
             Transaction transaction;
             transaction = session.beginTransaction();
 
+            List<Student> studentsDb = session
+                    .createQuery("FROM Student", Student.class)
+                    .list();
+
+            int count = 0;
+
             for  (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
 
@@ -117,10 +125,37 @@ public class App {
                     String lastName = lastNameNode.getTextContent();
                     String email = emailNode != null ? emailNode.getTextContent() : null;
                     Integer phone = phoneNode != null ? Integer.parseInt(phoneNode.getTextContent()) : null;
+
+                    boolean exists = false;
+                    for (Student s : studentsDb) {
+                        if (s.getIdcard().equals(idCard)) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (exists) {
+                        System.out.println("Student with IDCard:" + idCard + " already exists");
+                        continue;
+                    }
+
+                    Student student = new Student();
+                    student.setIdcard(idCard);
+                    student.setFirstname(firstName);
+                    student.setLastname(lastName);
+                    student.setEmail(email);
+                    student.setPhone(String.valueOf(phone));
+
+                    session.persist(student);
+                    count++;
                 }
             }
             transaction.commit();
-            System.out.println("Successfully added students");
+            if(count>0) {
+                System.out.println("Successfully added students");
+            }
+            else{
+                System.out.println("Error adding students, try again with students that are not already in the system");
+            }
 
         } catch (ParserConfigurationException | IOException | SAXException e) {
             System.out.println(e.getMessage());
