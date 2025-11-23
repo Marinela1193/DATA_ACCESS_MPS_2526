@@ -1,11 +1,12 @@
 package org.example;
 
-
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import org.hibernate.query.sql.internal.SQLQueryParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,9 +18,15 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Hello world!
+ *
+ */
 public class App {
 
     private static SessionFactory sessionFactory = null;
@@ -32,9 +39,10 @@ public class App {
 
         return sessionFactory;
     }
+
     public static void main(String[] args) {
 
-        if(args.length ==0){
+        if (args.length == 0) {
             System.out.print("No arguments to read \n");
             helpScreen();
             return;
@@ -43,16 +51,16 @@ public class App {
         String arg = args[0];
         switch (arg) {
             case "-h":
-                case "--help":
-                    helpScreen();
-                    break;
+            case "--help":
+                helpScreen();
+                break;
             case "-a":
-                case "--add":
-                    addStudentsXMLFile();
-                    break;
+            case "--add":
+                addStudentsXMLFile();
+                break;
             case "-e":
             case "--enroll":
-                enrollStuden();
+                enrollStudent();
                 break;
             case "-p":
             case "--print":
@@ -68,13 +76,13 @@ public class App {
 
     public static void helpScreen() {
 
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Options:");
-            System.out.println("-h, --help: show this help");
-            System.out.println("-a, --add {filename.xml}: add the students in the XML file to the database.");
-            System.out.println("-e, --enroll {studentId} {courseId}: enroll a student in a course");
-            System.out.println("-p, --print {studentId} {courseId}: show the scores of a student in a course");
-            System.out.println("-q, --qualify {studentId} {courseId}: introduce the scores obtained by the student in the course.");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Options:");
+        System.out.println("-h, --help: show this help");
+        System.out.println("-a, --add {filename.xml}: add the students in the XML file to the database.");
+        System.out.println("-e, --enroll {studentId} {courseId}: enroll a student in a course");
+        System.out.println("-p, --print {studentId} {courseId}: show the scores of a student in a course");
+        System.out.println("-q, --qualify {studentId} {courseId}: introduce the scores obtained by the student in the course.");
 
     }
 
@@ -86,7 +94,7 @@ public class App {
             System.err.println("Error: The file students.xml cannot be found or is empty");
             return;
         }
-        try(Session session = getSessionFactory().openSession()) {
+        try (Session session = getSessionFactory().openSession()) {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(xml);
@@ -103,10 +111,10 @@ public class App {
 
             int count = 0;
 
-            for  (int i = 0; i < nodeList.getLength(); i++) {
+            for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
 
-                if(node.getNodeType() == Node.ELEMENT_NODE) {
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
 
                     Node idNode = element.getElementsByTagName("idcard").item(0);
@@ -120,11 +128,15 @@ public class App {
                         continue;
                     }
 
+                    //comprobar email y telefono que estén en buen formato
+
                     String idCard = idNode.getTextContent();
                     String firstName = nameNode.getTextContent();
                     String lastName = lastNameNode.getTextContent();
                     String email = emailNode != null ? emailNode.getTextContent() : null;
                     Integer phone = phoneNode != null ? Integer.parseInt(phoneNode.getTextContent()) : null;
+
+                    //si un estudiante falle no se incluye ningún estudiante en el sistema
 
                     boolean exists = false;
                     for (Student s : studentsDb) {
@@ -150,23 +162,223 @@ public class App {
                 }
             }
             transaction.commit();
-            if(count>0) {
+            if (count > 0) {
                 System.out.println("Successfully added students");
-            }
-            else{
+            } else {
                 System.out.println("Error adding students, try again with students that are not already in the system");
             }
 
         } catch (ParserConfigurationException | IOException | SAXException e) {
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
             sessionFactory.close();
         }
     }
 
-    public static void enrollStuden() {
+    public static void enrollStudent() {
+        //Create the stored functions
+        try (Session session = getSessionFactory().openSession()) {
+            //ask the user the student to enroll
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Introduce the ID of the student you would like to enroll");
+            String id = sc.nextLine();
+            //we ask in which module you want to enroll the student
+            System.out.println("Introduce the course of the student you would like to enroll: 1 for  DAM and 2 for DAW");
+            int course = sc.nextInt();
 
+            //check if the student is in enrollments table
+            //this query returns all students idcard and courses they are enroll
+            Query<Enrollment> checkEnrollment = session.createQuery(
+                    "FROM Enrollment e WHERE e.student.idcard = :studentId AND e.course.id = :courseId",
+                    Enrollment.class
+            );
+            checkEnrollment.setParameter("studentId", id);
+            checkEnrollment.setParameter("courseId", course);
+
+            //we save the results in a list
+            List<Enrollment> previousEnrollments = checkEnrollment.list();
+
+            //if the id exists in DB
+            if (previousEnrollments.isEmpty()) {
+                //this means the student is not enrolled already in some courses.
+                //we create the student
+
+                Transaction transaction;
+
+                transaction = session.beginTransaction();
+                try {
+                    Student student = new Student();
+
+                    student.setIdcard(id);
+                    System.out.println("What is the name of the student?");
+                    String name = sc.nextLine();
+                    student.setFirstname(name);
+                    System.out.println("What is the last name of the student?");
+                    String lastName = sc.nextLine();
+                    student.setLastname(lastName);
+                    System.out.println("What is the email of the student?");
+                    String email = sc.nextLine();
+                    student.setEmail(email);
+                    System.out.println("What is the phone of the student?");
+                    String phone = sc.nextLine();
+                    student.setPhone(phone);
+
+                    session.persist(student);
+
+                    //we create a new enrollment with the studend ID and in year 1
+                    Enrollment enrollment1 = new Enrollment();
+                    //in order to introduce the student in the first year
+                    //we create the course c in order to assign the year 1
+                    Cours c = session.find(Cours.class, course);
+                    enrollment1.setStudent(student);
+                    enrollment1.setCourse(c);
+                    enrollment1.setYear(2025);
+                    //we add the student in all courses of 1 year
+
+                    session.persist(enrollment1);
+
+                    //we create a list that will have all subjects from 1st course of the course the user has indicated
+                    List<Subject> subjects = session.createQuery(
+                                    "SELECT sc.subject FROM SubjectCours sc " +
+                                            "WHERE sc.course.id = :courseId AND sc.subject.year = 1",
+                                    Subject.class
+                            )
+                            .setParameter("courseId", course)
+                            .getResultList();
+
+                    //we create a for in order to go for all subjects in the list created
+                    //and create all subjects for this new enrollment
+                    for (Subject s : subjects) {
+
+                        Score score = new Score();
+                        score.setEnrollment(enrollment1);
+                        score.setSubject(s);
+                        score.setScore(null);
+                        session.persist(score);
+                    }
+
+                    transaction.commit();
+                    System.out.println("Successfully added student");
+
+                } catch (Exception e) {
+                    if (transaction != null) {
+                        transaction.rollback();
+                    }
+
+                    System.out.println(e.getMessage());
+                }
+            }
+            else {
+                //if the student already exists, then, we want to know the year he is in and which subjects has he failed
+                // We check within that course if he/she was previously enrolled
+                System.out.println("The student is already enrolled. We will see if he/she has pending subjects");
+
+                Transaction transaction2;
+                transaction2 = session.beginTransaction();
+                try {
+                    Student student = session.find(Student.class, id);
+
+                    List<Object[]> passedSubjectsObjects = session.createNativeQuery(
+                            "SELECT * FROM subjectsPassed_mps_2526(:studentId)"
+                    ).setParameter("studentId", id).list();
+
+                    List<Subject> allCourseSubjects = session.createQuery(
+                            "SELECT s FROM Subject s JOIN SubjectCours sc ON s.code = sc.subject.id WHERE sc.course.id = :courseId",
+                            Subject.class
+                    ).setParameter("courseId", course).getResultList();
+
+                    if (passedSubjectsObjects.size() == allCourseSubjects.size()) {
+                        System.out.println("The student has passed everything! Congratulations! You have graduated.");
+                    }
+                    else {
+                        //we obtain the subjectsfailed by this id student
+                        List<Object[]> failedSubjectsObjects = session.createNativeQuery(
+                                "SELECT * FROM subjectsPending_mps_2526(:studentId)"
+                        ).setParameter("studentId", id).list();
+
+                        if (!failedSubjectsObjects.isEmpty()) {
+
+                            //we turn the objects into a list
+                            List<Subject> failedSubjects = new ArrayList<>();
+
+                            for (Object[] row : failedSubjectsObjects) {
+                                Integer subjectCode = (Integer) row[2];
+                                Subject failedSubject = session.find(Subject.class, subjectCode);
+                                if (failedSubject != null) {
+                                    failedSubjects.add(failedSubject);
+                                }
+                            }
+
+                            List<Subject> secondYearSubjects = session.createQuery(
+                                    "SELECT s FROM Subject s JOIN SubjectCours sc ON s.id = sc.subject.id WHERE sc.course.id = :courseId AND s.year = 2",
+                                    Subject.class
+                            ).setParameter("courseId", id).getResultList();
+
+
+                            List<Subject> subjectsToEnroll = new ArrayList<>();
+                            subjectsToEnroll.addAll(secondYearSubjects);
+
+                            for (Subject s : failedSubjects) {
+                                if (!subjectsToEnroll.contains(s)) {
+                                    subjectsToEnroll.add(s);
+                                }
+                            }
+
+                            Enrollment enrollment2 = new Enrollment();
+                            Cours c2 = session.find(Cours.class, course);
+                            enrollment2.setStudent(student);
+                            enrollment2.setCourse(c2);
+                            enrollment2.setYear(2025);
+
+                            session.persist(enrollment2);
+
+                            for (Subject s : subjectsToEnroll) {
+
+                                Score score = new Score();
+                                score.setEnrollment(enrollment2);
+                                score.setSubject(s);
+                                score.setScore(null);
+                                session.persist(score);
+
+                                System.out.println("Successfully added student in first year pending subjects and second year");
+                            }
+                        } else {
+                            System.out.println("The student has passed the first year. Enrolling only in second-year subjects.");
+
+                            List<Subject> secondYearSubjects1 = session.createQuery(
+                                    "SELECT s FROM Subject s JOIN SubjectCours sc ON s.id = sc.subject.id WHERE sc.course.id = :courseId AND s.year = 2",
+                                    Subject.class
+                            ).setParameter("courseId", id).getResultList();
+
+
+                            Enrollment enrollment3 = new Enrollment();
+                            Cours c3 = session.find(Cours.class, course);
+                            enrollment3.setStudent(student);
+                            enrollment3.setCourse(c3);
+                            enrollment3.setYear(2025);
+
+                            session.persist(enrollment3);
+
+                            for (Subject s : secondYearSubjects1) {
+
+                                Score score = new Score();
+                                score.setEnrollment(enrollment3);
+                                score.setSubject(s);
+                                score.setScore(null);
+                                session.persist(score);
+                            }
+                        }
+                        transaction2.commit();
+                        System.out.println("Successfully enrolled student in second year");
+                    }
+
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
+
 
     public static void printScores() {
 

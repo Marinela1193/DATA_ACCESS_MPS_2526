@@ -12,7 +12,7 @@
 5||-9223372036854775808|T|G
 5||16384|T|G
 5||16601|T|G</Grants>
-      <IntrospectionStateNumber>1303</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1344</IntrospectionStateNumber>
       <ServerVersion>17.6</ServerVersion>
       <StartupTime>1762200889</StartupTime>
       <TimeZones>true ACDT
@@ -1462,7 +1462,7 @@ false posix/Zulu
 16653||10|U|G
 16653||16482|U|G
 16653||16384|U|O</Grants>
-      <IntrospectionStateNumber>1303</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1344</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -5088,43 +5088,54 @@ log_statement=none</Config>
       <ValidatorName>fmgr_sql_validator</ValidatorName>
       <ValidatorSchema>pg_catalog</ValidatorSchema>
     </language>
-    <schema id="280" parent="2" name="auth">
+    <schema id="280" parent="2" name="_da_vtschool_2526">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionL1Xid>1344</LastIntrospectionL1Xid>
+      <LastIntrospectionL2Xid>1344</LastIntrospectionL2Xid>
+      <LastIntrospectionL3Xid>1344</LastIntrospectionL3Xid>
+      <LastIntrospectionLevel>3</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-11-18.18:26:27</LastIntrospectionLocalTimestamp>
+      <ObjectId>25242</ObjectId>
+      <StateNumber>1304</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="281" parent="2" name="auth">
       <ObjectId>16494</ObjectId>
       <StateNumber>973</StateNumber>
       <OwnerName>supabase_admin</OwnerName>
     </schema>
-    <schema id="281" parent="2" name="extensions">
+    <schema id="282" parent="2" name="extensions">
       <ObjectId>16388</ObjectId>
       <StateNumber>857</StateNumber>
       <OwnerName>postgres</OwnerName>
     </schema>
-    <schema id="282" parent="2" name="graphql">
+    <schema id="283" parent="2" name="graphql">
       <ObjectId>16624</ObjectId>
       <StateNumber>947</StateNumber>
       <OwnerName>supabase_admin</OwnerName>
     </schema>
-    <schema id="283" parent="2" name="graphql_public">
+    <schema id="284" parent="2" name="graphql_public">
       <ObjectId>16613</ObjectId>
       <StateNumber>947</StateNumber>
       <OwnerName>supabase_admin</OwnerName>
     </schema>
-    <schema id="284" parent="2" name="information_schema">
+    <schema id="285" parent="2" name="information_schema">
       <ObjectId>13219</ObjectId>
       <StateNumber>537</StateNumber>
       <OwnerName>supabase_admin</OwnerName>
     </schema>
-    <schema id="285" parent="2" name="pg_catalog">
+    <schema id="286" parent="2" name="pg_catalog">
       <Comment>system catalog schema</Comment>
       <ObjectId>11</ObjectId>
       <StateNumber>531</StateNumber>
       <OwnerName>supabase_admin</OwnerName>
     </schema>
-    <schema id="286" parent="2" name="pgbouncer">
+    <schema id="287" parent="2" name="pgbouncer">
       <ObjectId>16386</ObjectId>
       <StateNumber>741</StateNumber>
       <OwnerName>pgbouncer</OwnerName>
     </schema>
-    <schema id="287" parent="2" name="public">
+    <schema id="288" parent="2" name="public">
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <Comment>standard public schema</Comment>
       <Current>1</Current>
@@ -5234,83 +5245,170 @@ log_statement=none</Config>
 19694||16480|X|G
 19694||16481|X|G
 19694||16482|X|G</Grants>
-      <LastIntrospectionL1Xid>1303</LastIntrospectionL1Xid>
-      <LastIntrospectionL2Xid>1303</LastIntrospectionL2Xid>
-      <LastIntrospectionL3Xid>1303</LastIntrospectionL3Xid>
+      <LastIntrospectionL1Xid>1344</LastIntrospectionL1Xid>
+      <LastIntrospectionL2Xid>1344</LastIntrospectionL2Xid>
+      <LastIntrospectionL3Xid>1344</LastIntrospectionL3Xid>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2025-11-15.09:43:10</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-11-18.18:26:27</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>1067</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <schema id="288" parent="2" name="realtime">
+    <schema id="289" parent="2" name="realtime">
       <ObjectId>16605</ObjectId>
       <StateNumber>1180</StateNumber>
       <OwnerName>supabase_admin</OwnerName>
     </schema>
-    <schema id="289" parent="2" name="storage">
+    <schema id="290" parent="2" name="storage">
       <ObjectId>16542</ObjectId>
       <StateNumber>977</StateNumber>
       <OwnerName>supabase_admin</OwnerName>
     </schema>
-    <schema id="290" parent="2" name="vault">
+    <schema id="291" parent="2" name="vault">
       <ObjectId>16653</ObjectId>
       <StateNumber>930</StateNumber>
       <OwnerName>supabase_admin</OwnerName>
     </schema>
-    <trigger id="291" parent="2" name="graphql_watch_ddl">
+    <trigger id="292" parent="2" name="graphql_watch_ddl">
       <Event>ddl_command_end</Event>
       <ObjectId>16695</ObjectId>
       <StateNumber>947</StateNumber>
       <CallRoutineId>16693</CallRoutineId>
     </trigger>
-    <trigger id="292" parent="2" name="graphql_watch_drop">
+    <trigger id="293" parent="2" name="graphql_watch_drop">
       <Event>sql_drop</Event>
       <ObjectId>16696</ObjectId>
       <StateNumber>947</StateNumber>
       <CallRoutineId>16693</CallRoutineId>
     </trigger>
-    <trigger id="293" parent="2" name="issue_graphql_placeholder">
+    <trigger id="294" parent="2" name="issue_graphql_placeholder">
       <Event>sql_drop</Event>
       <ObjectId>16621</ObjectId>
       <StateNumber>911</StateNumber>
       <Tags>DROP EXTENSION</Tags>
       <CallRoutineId>16620</CallRoutineId>
     </trigger>
-    <trigger id="294" parent="2" name="issue_pg_cron_access">
+    <trigger id="295" parent="2" name="issue_pg_cron_access">
       <Event>ddl_command_end</Event>
       <ObjectId>16700</ObjectId>
       <StateNumber>951</StateNumber>
       <Tags>CREATE EXTENSION</Tags>
       <CallRoutineId>16597</CallRoutineId>
     </trigger>
-    <trigger id="295" parent="2" name="issue_pg_graphql_access">
+    <trigger id="296" parent="2" name="issue_pg_graphql_access">
       <Event>ddl_command_end</Event>
       <ObjectId>16619</ObjectId>
       <StateNumber>908</StateNumber>
       <Tags>CREATE FUNCTION</Tags>
       <CallRoutineId>16618</CallRoutineId>
     </trigger>
-    <trigger id="296" parent="2" name="issue_pg_net_access">
+    <trigger id="297" parent="2" name="issue_pg_net_access">
       <Event>ddl_command_end</Event>
       <ObjectId>16703</ObjectId>
       <StateNumber>965</StateNumber>
       <Tags>CREATE EXTENSION</Tags>
       <CallRoutineId>16599</CallRoutineId>
     </trigger>
-    <trigger id="297" parent="2" name="pgrst_ddl_watch">
+    <trigger id="298" parent="2" name="pgrst_ddl_watch">
       <Event>ddl_command_end</Event>
       <ObjectId>16622</ObjectId>
       <StateNumber>916</StateNumber>
       <CallRoutineId>16609</CallRoutineId>
     </trigger>
-    <trigger id="298" parent="2" name="pgrst_drop_watch">
+    <trigger id="299" parent="2" name="pgrst_drop_watch">
       <Event>sql_drop</Event>
       <ObjectId>16623</ObjectId>
       <StateNumber>918</StateNumber>
       <CallRoutineId>16610</CallRoutineId>
     </trigger>
-    <routine id="299" parent="287" name="listofemployeeofsales">
+    <sequence id="300" parent="280" name="courses_code_seq">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25250</ObjectId>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1305</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="301" parent="280" name="inscriptions_code_seq">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25259</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="302" parent="280" name="scores_code_seq">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25263</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="303" parent="280" name="subject_courses_code_seq">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25251</ObjectId>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1306</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="304" parent="280" name="subjects_code_seq">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25246</ObjectId>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1305</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="305" parent="280" name="courses">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25247</ObjectId>
+      <StateNumber>1316</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="306" parent="280" name="enrollments">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25256</ObjectId>
+      <StateNumber>1316</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="307" parent="280" name="scores">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25260</ObjectId>
+      <StateNumber>1317</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="308" parent="280" name="students">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25264</ObjectId>
+      <StateNumber>1318</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="309" parent="280" name="subject_courses">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25252</ObjectId>
+      <StateNumber>1319</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="310" parent="280" name="subjects">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>25243</ObjectId>
+      <StateNumber>1319</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <routine id="311" parent="288" name="listofemployeeofsales">
       <ArgumentsDefinition>salesman character varying</ArgumentsDefinition>
       <DetailsLevel>3</DetailsLevel>
       <ObjectId>19690</ObjectId>
@@ -5321,7 +5419,7 @@ log_statement=none</Config>
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="300" parent="287" name="listofemployeeperparameter">
+    <routine id="312" parent="288" name="listofemployeeperparameter">
       <ArgumentsDefinition>emp character varying</ArgumentsDefinition>
       <DetailsLevel>3</DetailsLevel>
       <ObjectId>19694</ObjectId>
@@ -5332,7 +5430,7 @@ log_statement=none</Config>
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <sequence id="301" parent="287" name="subjects_code_seq">
+    <sequence id="313" parent="288" name="subjects_code_seq">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>18557</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
@@ -5341,63 +5439,373 @@ log_statement=none</Config>
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="302" parent="287" name="dept">
+    <table id="314" parent="288" name="dept">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>18573</ObjectId>
       <StateNumber>1236</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="303" parent="287" name="employee">
+    <table id="315" parent="288" name="employee">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>18570</ObjectId>
       <StateNumber>1236</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="304" parent="287" name="subjects">
+    <table id="316" parent="288" name="subjects">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>18558</ObjectId>
       <StateNumber>1238</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <argument id="305" parent="299">
+    <column id="317" parent="305" name="code">
+      <DefaultExpression>nextval(&apos;_da_vtschool_2526.courses_code_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <SequenceId>25250</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="318" parent="305" name="name">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1305</StateNumber>
+      <StoredType>varchar(90)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="319" parent="305" name="pk_courses">
+      <ColNames>code</ColNames>
+      <ObjectId>25274</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1312</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="320" parent="305" name="pk_courses">
+      <ObjectId>25275</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1312</StateNumber>
+      <UnderlyingIndexId>25274</UnderlyingIndexId>
+    </key>
+    <column id="321" parent="306" name="student">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>varchar(12)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="322" parent="306" name="course">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="323" parent="306" name="year">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="324" parent="306" name="code">
+      <DefaultExpression>nextval(&apos;_da_vtschool_2526.inscriptions_code_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <SequenceId>25259</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="325" parent="306" name="fk_student">
+      <ColNames>student</ColNames>
+      <ObjectId>25294</ObjectId>
+      <StateNumber>1318</StateNumber>
+      <RefKeyColPositions>3</RefKeyColPositions>
+      <RefTableId>25264</RefTableId>
+    </foreign-key>
+    <foreign-key id="326" parent="306" name="fk_course">
+      <ColNames>course</ColNames>
+      <ObjectId>25284</ObjectId>
+      <StateNumber>1316</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>25247</RefTableId>
+    </foreign-key>
+    <index id="327" parent="306" name="pk_inscriptions">
+      <ColNames>code</ColNames>
+      <ObjectId>25276</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1313</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="328" parent="306" name="pk_inscriptions">
+      <ObjectId>25277</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1313</StateNumber>
+      <UnderlyingIndexId>25276</UnderlyingIndexId>
+    </key>
+    <column id="329" parent="307" name="enrollment_id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="330" parent="307" name="subject_id">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="331" parent="307" name="score">
+      <Position>3</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="332" parent="307" name="code">
+      <DefaultExpression>nextval(&apos;_da_vtschool_2526.scores_code_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <SequenceId>25263</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="333" parent="307" name="fk_enrollment">
+      <ColNames>enrollment_id</ColNames>
+      <ObjectId>25289</ObjectId>
+      <StateNumber>1317</StateNumber>
+      <RefKeyColPositions>4</RefKeyColPositions>
+      <RefTableId>25256</RefTableId>
+    </foreign-key>
+    <foreign-key id="334" parent="307" name="fk_subjects">
+      <ColNames>subject_id</ColNames>
+      <ObjectId>25299</ObjectId>
+      <StateNumber>1319</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>25243</RefTableId>
+    </foreign-key>
+    <index id="335" parent="307" name="ur_scores">
+      <ColNames>enrollment_id
+subject_id</ColNames>
+      <ObjectId>25280</ObjectId>
+      <StateNumber>1314</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="336" parent="307" name="pk_scores">
+      <ColNames>code</ColNames>
+      <ObjectId>25278</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1314</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="337" parent="307" name="pk_scores">
+      <ObjectId>25279</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1314</StateNumber>
+      <UnderlyingIndexId>25278</UnderlyingIndexId>
+    </key>
+    <key id="338" parent="307" name="ur_scores">
+      <ObjectId>25281</ObjectId>
+      <StateNumber>1314</StateNumber>
+      <UnderlyingIndexId>25280</UnderlyingIndexId>
+    </key>
+    <column id="339" parent="308" name="firstname">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>varchar(50)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="340" parent="308" name="lastname">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="341" parent="308" name="idcard">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>varchar(8)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="342" parent="308" name="phone">
+      <Position>4</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>varchar(12)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="343" parent="308" name="email">
+      <Position>5</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="344" parent="308" name="pk_students">
+      <ColNames>idcard</ColNames>
+      <ObjectId>25282</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1315</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="345" parent="308" name="pk_students">
+      <ObjectId>25283</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1315</StateNumber>
+      <UnderlyingIndexId>25282</UnderlyingIndexId>
+    </key>
+    <column id="346" parent="309" name="code">
+      <DefaultExpression>nextval(&apos;_da_vtschool_2526.subject_courses_code_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="347" parent="309" name="subject_id">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="348" parent="309" name="course_id">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="349" parent="309" name="fk_subject_courses_subject">
+      <ColNames>subject_id</ColNames>
+      <ObjectId>25313</ObjectId>
+      <StateNumber>1319</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>25243</RefTableId>
+    </foreign-key>
+    <foreign-key id="350" parent="309" name="fk_subject_courses_course">
+      <ColNames>course_id</ColNames>
+      <ObjectId>25308</ObjectId>
+      <StateNumber>1319</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>25247</RefTableId>
+    </foreign-key>
+    <index id="351" parent="309" name="pk_subject_courses">
+      <ColNames>code</ColNames>
+      <ObjectId>25306</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1319</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="352" parent="309" name="ur_subject_courses">
+      <ColNames>subject_id
+course_id</ColNames>
+      <ObjectId>25304</ObjectId>
+      <StateNumber>1319</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="353" parent="309" name="pk_subject_courses">
+      <ObjectId>25307</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1319</StateNumber>
+      <UnderlyingIndexId>25306</UnderlyingIndexId>
+    </key>
+    <key id="354" parent="309" name="ur_subject_courses">
+      <ObjectId>25305</ObjectId>
+      <StateNumber>1319</StateNumber>
+      <UnderlyingIndexId>25304</UnderlyingIndexId>
+    </key>
+    <column id="355" parent="310" name="code">
+      <DefaultExpression>nextval(&apos;_da_vtschool_2526.subjects_code_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1306</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <SequenceId>25246</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="356" parent="310" name="name">
+      <Position>2</Position>
+      <StateNumber>1305</StateNumber>
+      <StoredType>varchar(50)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="357" parent="310" name="year">
+      <Position>3</Position>
+      <StateNumber>1305</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="358" parent="310" name="hours">
+      <Position>4</Position>
+      <StateNumber>1305</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="359" parent="310" name="pk_subjects">
+      <ColNames>code</ColNames>
+      <ObjectId>25272</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1311</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="360" parent="310" name="pk_subjects">
+      <ObjectId>25273</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1311</StateNumber>
+      <UnderlyingIndexId>25272</UnderlyingIndexId>
+    </key>
+    <argument id="361" parent="311">
       <ArgumentDirection>R</ArgumentDirection>
       <StoredType>setof() employee|0s</StoredType>
     </argument>
-    <argument id="306" parent="299" name="salesman">
+    <argument id="362" parent="311" name="salesman">
       <Position>1</Position>
-      <StoredType>varchar|0s</StoredType>
     </argument>
-    <argument id="307" parent="300">
+    <argument id="363" parent="312">
       <ArgumentDirection>R</ArgumentDirection>
       <StoredType>setof() employee|0s</StoredType>
     </argument>
-    <argument id="308" parent="300" name="emp">
+    <argument id="364" parent="312" name="emp">
       <Position>1</Position>
-      <StoredType>varchar|0s</StoredType>
     </argument>
-    <column id="309" parent="302" name="deptno">
+    <column id="365" parent="314" name="deptno">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1230</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="310" parent="302" name="dname">
+    <column id="366" parent="314" name="dname">
       <Position>2</Position>
       <StateNumber>1230</StateNumber>
       <StoredType>varchar(14)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="311" parent="302" name="loc">
+    <column id="367" parent="314" name="loc">
       <Position>3</Position>
       <StateNumber>1230</StateNumber>
       <StoredType>varchar(13)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="312" parent="302" name="dept_pkey">
+    <index id="368" parent="314" name="dept_pkey">
       <ColNames>deptno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>18576</ObjectId>
@@ -5406,46 +5814,46 @@ log_statement=none</Config>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="313" parent="302" name="dept_pkey">
+    <key id="369" parent="314" name="dept_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>18577</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1234</StateNumber>
       <UnderlyingIndexId>18576</UnderlyingIndexId>
     </key>
-    <column id="314" parent="303" name="empno">
+    <column id="370" parent="315" name="empno">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1228</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="315" parent="303" name="ename">
+    <column id="371" parent="315" name="ename">
       <Position>2</Position>
       <StateNumber>1228</StateNumber>
       <StoredType>varchar(10)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="316" parent="303" name="job">
+    <column id="372" parent="315" name="job">
       <Position>3</Position>
       <StateNumber>1228</StateNumber>
       <StoredType>varchar(9)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="317" parent="303" name="deptno">
+    <column id="373" parent="315" name="deptno">
       <Position>4</Position>
       <StateNumber>1228</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="318" parent="303" name="fk_employee_dpt">
+    <foreign-key id="374" parent="315" name="fk_employee_dpt">
       <ColNames>deptno</ColNames>
       <ObjectId>18580</ObjectId>
       <StateNumber>1236</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>18573</RefTableId>
     </foreign-key>
-    <index id="319" parent="303" name="employee_pkey">
+    <index id="375" parent="315" name="employee_pkey">
       <ColNames>empno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>18578</ObjectId>
@@ -5454,14 +5862,14 @@ log_statement=none</Config>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="320" parent="303" name="employee_pkey">
+    <key id="376" parent="315" name="employee_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>18579</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1235</StateNumber>
       <UnderlyingIndexId>18578</UnderlyingIndexId>
     </key>
-    <column id="321" parent="304" name="code">
+    <column id="377" parent="316" name="code">
       <DefaultExpression>nextval(&apos;subjects_code_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -5470,25 +5878,25 @@ log_statement=none</Config>
       <SequenceId>18557</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="322" parent="304" name="name">
+    <column id="378" parent="316" name="name">
       <Position>2</Position>
       <StateNumber>1214</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="323" parent="304" name="year">
+    <column id="379" parent="316" name="year">
       <Position>4</Position>
       <StateNumber>1218</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="324" parent="304" name="hours">
+    <column id="380" parent="316" name="hours">
       <Position>5</Position>
       <StateNumber>1238</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <index id="325" parent="304" name="subjects_pkey">
+    <index id="381" parent="316" name="subjects_pkey">
       <ColNames>code</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>18564</ObjectId>
@@ -5497,7 +5905,7 @@ log_statement=none</Config>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="326" parent="304" name="subjects_pkey">
+    <key id="382" parent="316" name="subjects_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>18565</ObjectId>
       <Primary>1</Primary>
