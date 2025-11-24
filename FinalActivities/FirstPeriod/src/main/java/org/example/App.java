@@ -23,10 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
+
 public class App {
 
     private static SessionFactory sessionFactory = null;
@@ -385,6 +382,74 @@ public class App {
     }
 
     public static void introScores() {
+        try (Session session = getSessionFactory().openSession())
+        {
+            Scanner sc = new Scanner(System.in);
+
+            //we request the ID of the student that we want to introduce the scores
+            System.out.println("Introduce the ID of the student to qualify");
+            String id = sc.nextLine();
+
+            Transaction transaction2;
+            transaction2 = session.beginTransaction();
+
+
+            //We call the student we are about to update the scores
+            Student student = (Student)session.find(Student.class, id);
+
+            if(student == null) {
+                System.out.println("Student with ID " + id + " not found");
+                return;
+            }
+
+            //We create al ist of the subjects this student is enrolled and
+            //that the score is null
+            // we create a query
+            List <Score> subjectsToScore = session.createQuery(
+                    "SELECT sc " +
+                            "FROM Score sc " +
+                            "JOIN sc.enrollment e " +
+                            "JOIN e.student st " +
+                            "WHERE sc.score IS NULL AND st.idcard = :studentId",
+                    Score.class
+                    ).setParameter("studentId", id)
+                    .getResultList();
+
+            if (subjectsToScore.isEmpty()) {
+                System.out.println("This student has no pending subjects to qualify.");
+                return;
+            }
+
+            //Then, we do an update of the scores of those subjects
+
+            for (Score score : subjectsToScore) {
+
+                Subject s = score.getSubject();
+                System.out.println("Introduce the score for subject: " + s.getName() + " (0-10 or 99 to skip)");
+                //we need to make sure first the score written goes between 0 - 10
+                int scoreValue = sc.nextInt();
+                //if user writes 99 it means he does not want to qualify that subject yet.
+                if(scoreValue == 99){
+                    System.out.println("Skipping subject.");
+                    continue;
+                }
+                if(scoreValue < 0 || scoreValue > 10) {
+                    System.out.println("Invalid score. Must be between 0 and 10.");
+                    continue;
+                }
+                score.setScore(scoreValue);
+                session.merge(score);
+
+                System.out.println("Score for subject " + s.getName() + " updated correctly.");
+
+            }
+
+            session.getTransaction().commit();
+            System.out.println("All scores updated successfully.");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
     }
 }
