@@ -378,8 +378,45 @@ public class App {
 
 
     public static void printScores() {
+        try (Session session = getSessionFactory().openSession()) {
+            Scanner sc = new Scanner(System.in);
 
+            //we request the ID of the student that we want to print
+            System.out.println("Introduce the ID of the student to see the information");
+            String id = sc.nextLine();
+
+            Transaction transaction2;
+            transaction2 = session.beginTransaction();
+
+            //We call the student we are about to update the scores
+            Student student = (Student) session.find(Student.class, id);
+
+            //we create a query to list all the student's information
+            List<Score> studentInfoList = session.createQuery(
+                            "SELECT sc " +
+                                    "FROM Score sc " +
+                                    "JOIN sc.enrollment e " +
+                                    "JOIN e.student st " +
+                                    "JOIN sc.subject sub " +
+                                    "WHERE st.idcard = :studentId " +
+                                    "ORDER BY e.year DESC",
+                            Score.class
+                    ).setParameter("studentId", id)
+                    .getResultList();
+            //we need to insert that information into a table
+            //we create a loop with certain structure so details are added in order
+            System.out.println("Year      Subjets                            Score");
+            System.out.println("---------------------------------------------------");
+            for (Score s : studentInfoList) {
+                int year = s.getEnrollment().getYear();
+                String subject = s.getSubject().getName();
+                int score = s.getScore();
+                System.out.println(year + " " + subject + " " + score);
+            }
+            transaction2.commit();
+        }
     }
+
 
     public static void introScores() {
         try (Session session = getSessionFactory().openSession())
