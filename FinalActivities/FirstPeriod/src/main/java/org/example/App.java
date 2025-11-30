@@ -73,7 +73,6 @@ public class App {
 
     public static void helpScreen() {
 
-        Scanner sc = new Scanner(System.in);
         System.out.println("Options:");
         System.out.println("-h, --help: show this help");
         System.out.println("-a, --add {filename.xml}: add the students in the XML file to the database.");
@@ -280,7 +279,7 @@ public class App {
                     ).setParameter("studentId", id).list();
 
                     List<Subject> allCourseSubjects = session.createQuery(
-                            "SELECT s FROM Subject s JOIN SubjectCours sc ON s.code = sc.subject.id WHERE sc.course.id = :courseId",
+                            "SELECT name FROM Subject s JOIN SubjectCours sc ON s.id = sc.subject.id WHERE sc.course.id = :courseId",
                             Subject.class
                     ).setParameter("courseId", course).getResultList();
 
