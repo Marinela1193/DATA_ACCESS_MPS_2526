@@ -1,8 +1,11 @@
 package org.example;
 
 import jakarta.persistence.*;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.LinkedHashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 @Entity
@@ -67,4 +70,31 @@ public class Enrollment {
         this.scores = scores;
     }
 
+    public void enrollStudent(Student student) {
+
+        Transaction transaction;
+        Scanner sc = new Scanner(System.in);
+
+        try (Session session = SessionFactory.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction();
+
+            student = new Student();
+            student.setIdcard(getStudent().getIdcard());
+            System.out.println("What is the name of the student?");
+            String name = sc.nextLine();
+            student.setFirstname(name);
+            System.out.println("What is the last name of the student?");
+            String lastName = sc.nextLine();
+            student.setLastname(lastName);
+            System.out.println("What is the email of the student?");
+            String email = sc.nextLine();
+            student.setEmail(email);
+            System.out.println("What is the phone of the student?");
+            String phone = sc.nextLine();
+            student.setPhone(phone);
+
+            session.persist(student);
+        }
+    }
 }

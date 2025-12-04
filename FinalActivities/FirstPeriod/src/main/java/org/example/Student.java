@@ -1,8 +1,11 @@
 package org.example;
 
 import jakarta.persistence.*;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -75,4 +78,81 @@ public class Student {
         this.enrollments = enrollments;
     }
 
+    @Override
+    public String toString() {
+        return idcard + " " + firstname + " " + lastname + " " + phone + " " + email;
+    }
+
+    public List<Student> getStudents() {
+        try(Session session = SessionFactory.getSessionFactory().openSession()){
+            Query myQuery = session.createQuery("SELECT s FROM Student s, Student.class");
+            List<Student> students = myQuery.getResultList();
+            return students;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public boolean exists() {
+        List<Student> studentList = this.getStudents();
+        for(Student student : studentList){
+            if(student.getIdcard().equals(this.idcard)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addToDatabase(Student student) {
+
+        Transaction transaction;
+
+        try (Session session = SessionFactory.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction();
+            if(student != null) {
+
+                student = new Student();
+                student.setIdcard(getIdcard());
+                student.setFirstname(getFirstname());
+                student.setLastname(getLastname());
+                if(checkEmail(student.getEmail())) {
+                    student.setEmail(getEmail());
+                }else{
+                    System.out.println("Invalid email");
+                    return;
+                }
+
+                if(checkPhoneNumber(student.getPhone())){
+                    student.setPhone(String.valueOf(getPhone()));
+                }else{
+                    System.out.println("Invalid phone number");
+                    return;
+                }
+
+                session.persist(student);
+                transaction.commit();
+
+                System.out.println("Student added correctly");
+
+            }else {
+                session.close();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+
+        }
+    }
+
+    public boolean checkEmail(String email){
+        email = this.email;
+        String check = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(check);
+
+    }
+
+    public boolean checkPhoneNumber(String number){
+        return phone.matches("\\d{9}");
+    }
 }
