@@ -1,0 +1,19 @@
+//Passed subjects
+
+CREATE OR REPLACE FUNCTION _da_vtschool_2526.subjectsPassed_mps_2526(student_idcard TEXT)
+RETURNS TABLE(code INT, name TEXT, year INT, hours INT) AS $$ SELECT sub.code, sub.name, sub.year, sub.hours
+FROM _da_vtschool_2526.subjects sub
+    JOIN _da_vtschool_2526.scores sc ON sub.code = sc.subject_id
+    JOIN _da_vtschool_2526.enrollments e ON sc.enrollment_id = e.code
+WHERE sc.score >= 5 AND e.student = student_idcard;
+ $$ LANGUAGE sql;
+
+//Failed subjects
+
+CREATE OR REPLACE FUNCTION _da_vtschool_2526.subjectsPending_mps_2526(student_idcard TEXT)
+RETURNS TABLE(code INT, name TEXT, year INT, hours INT) AS $$ SELECT sub.code, sub.name, sub.year, sub.hours
+FROM _da_vtschool_2526.subjects sub
+    JOIN _da_vtschool_2526.scores sc ON sub.code = sc.subject_id
+    JOIN _da_vtschool_2526.enrollments e ON sc.enrollment_id = e.code
+WHERE sc.score < 5 AND e.student = student_idcard;
+ $$ LANGUAGE sql;

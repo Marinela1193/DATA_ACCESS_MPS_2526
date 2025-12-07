@@ -87,4 +87,15 @@ public class Cours {
             return 0;
         }
     }
+
+    public Cours getCourseById(int courseId) {
+        try(Session session = SessionFactory.getSessionFactory().openSession()){
+            Query myQuery = session.createQuery("SELECT c FROM Cours c WHERE c.id =  :courseId");
+            myQuery.setParameter("courseId", courseId);
+            return Cours.class.cast(myQuery.getSingleResult());
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }

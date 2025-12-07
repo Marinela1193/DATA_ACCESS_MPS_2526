@@ -105,7 +105,7 @@ public class Student {
     public Student getStudentByIdcard(String idCard) {
         try(Session session = SessionFactory.getSessionFactory().openSession()){
             Query myQuery = session.createQuery("SELECT s FROM Student s WHERE s.idcard = :idCard");
-            myQuery.setParameter("idCard", idcard);
+            myQuery.setParameter("idCard", idCard);
             return Student.class.cast(myQuery.getSingleResult());
         }catch (Exception e) {
             System.out.println(e.getMessage());

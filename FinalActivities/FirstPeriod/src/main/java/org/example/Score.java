@@ -58,21 +58,19 @@ public class Score {
         this.score = score;
     }
 
-    public void createScore() {
-        Transaction transaction = null;
-        try (Session session = SessionFactory.getSessionFactory().openSession()) {
+    public void createScore(Session session, Enrollment enrollment, Subject subject) {
+        try {
             Score score = new Score();
             score.setEnrollment(enrollment);
             score.setSubject(subject);
             score.setScore(null);
             session.persist(score);
-            transaction.commit();
-        }catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+
+        } catch (Exception e) {
+
             System.err.println("Error creating score: " + e.getMessage());
         }
+
     }
 
     public void printScores(List<Score> scores){
@@ -158,6 +156,36 @@ public class Score {
         }catch (Exception e){
             if (transaction != null) transaction.rollback();
             throw new RuntimeException("Error updating scores", e);
+        }
+    }
+
+    public void enrollInSubject(Session session, Enrollment enrollment, Subject subject) {
+        try {
+            Long count = session.createQuery(
+                            "SELECT COUNT(s) FROM Score s " +
+                                    "WHERE s.enrollment.id = :enrollmentId " +
+                                    "AND s.subject.id = :subjectId",
+                            Long.class
+                    )
+                    .setParameter("enrollmentId", enrollment.getId())
+                    .setParameter("subjectId", subject.getId())
+                    .uniqueResult();
+
+            if (count == null || count == 0) {
+                Score score = new Score();
+                score.setEnrollment(enrollment);
+                score.setSubject(subject);
+                score.setScore(null);
+                session.persist(score);
+                System.out.println("Enrolled student in subject: " + subject.getName());
+
+            } else {
+                System.out.println("Student already enrolled in subject: " + subject.getName());
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error during subject enrollment: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 }

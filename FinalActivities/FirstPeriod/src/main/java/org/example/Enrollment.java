@@ -73,7 +73,7 @@ public class Enrollment {
     public boolean checkEnrollment(String idCard, int courseCode) {
         try(Session session = SessionFactory.getSessionFactory().openSession()) {
             Long count = session.createQuery(
-                            "FROM Enrollment e " +
+                            "SELECT COUNT(e) FROM Enrollment e " +
                                     "WHERE e.student.idcard = :studentId " +
                                     "AND e.course.id = :courseId",
                             Long.class
@@ -87,19 +87,23 @@ public class Enrollment {
         }
     }
 
-    public void createEnrollment(String idCard, int courseCode) {
-        try(Session session = SessionFactory.getSessionFactory().openSession()) {
+    public Enrollment createEnrollment(Session session, Student student, Cours course, int year) {
 
             Enrollment enrollment = new Enrollment();
-            //in order to introduce the student in the first year
-            //we create the course c in order to assign the year 1
-            Cours c = session.find(Cours.class, course);
             enrollment.setStudent(student);
-            enrollment.setCourse(c);
-            enrollment.setYear(2025);
-            //we add the student in all courses of 1 year
-
+            enrollment.setCourse(course);
+            enrollment.setYear(year);
             session.persist(enrollment);
-        }
+            return enrollment;
+    }
+
+    public Enrollment getEnrollment(Session session, String idCard, int courseId) {
+        return session.createQuery(
+                        "FROM Enrollment e " +
+                                "WHERE e.student.idcard = :studentId AND e.course.id = :courseId",
+                        Enrollment.class)
+                .setParameter("studentId", idCard)
+                .setParameter("courseId", courseId)
+                .uniqueResult();
     }
 }

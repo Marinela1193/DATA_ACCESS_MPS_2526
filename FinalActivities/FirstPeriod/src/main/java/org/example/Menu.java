@@ -181,78 +181,70 @@ public class Menu {
         try (Session session = SessionFactory.getSessionFactory().openSession()) {
 
             //check that the IDCard is valid
-            Student student = new Student();
-            if (!student.checkIdCard()) {
-                System.err.println("IDCARD:  " + idCard + " is invalid, it must have 8 characteres.");
-                return;
-            }
-            //check the IDCard exists
-            if (!student.existsId(idCard)) {
-                System.err.println("IDCARD:  " + idCard + " does not exist in the system");
-                return;
-            }
+            Student student = new Student().getStudentByIdcard(idCard);
+            Cours course = new Cours().getCourseById(idCourse);
 
-            //check the IDCours exists
-            Cours course = new Cours();
-            if (!course.checkCourse(idCourse)) {
+            if (student == null) {
+                System.err.println("IDCARD: " + idCard + " does not exist in the system.");
+                return;
+            }
+            if (course == null) {
                 System.err.println("IDCourse: " + idCourse + " does not exist in the system.");
                 return;
             }
 
-            //check if student has completed the course
-            /*if (student.completedCourse(idCard, idCourse)) {
-                System.err.println("The student has already completed this course and cannot enroll again.");
-                return;
-            }*/
             //check table enrollments has id and course
-            Enrollment enrollment = new Enrollment();
+            Enrollment enrollmentNew = new Enrollment();
             Subject subject = new Subject();
             Score score = new Score();
             transaction = session.beginTransaction();
 
-            if (!enrollment.checkEnrollment(idCard, idCourse)) {
+            Enrollment enrollment = enrollmentNew.getEnrollment(session, idCard, idCourse);
+
+            if (enrollment == null)  {
                 System.err.println("IDCard: " + idCard + " does not exist in the Course: " + idCourse + " we will proceed to enroll the student in the first year");
 
-                enrollment.createEnrollment(idCard, idCourse);
+                enrollment = enrollmentNew.createEnrollment(session, student, course, 2025);
 
                 List<Subject> subjectsToEnroll = subject.getSubjectsFirstYear(idCourse);
 
                 for (Subject s : subjectsToEnroll) {
-                    score.createScore();
+                    score.createScore(session, enrollment, s);
+                    System.out.println("Score(s): " + subjectsToEnroll.size() + " created successfully");
+
                 }
             } else {
+                System.out.println("The student " + idCard + " is already enrolled in course: " + idCourse + " ,we will proceed with failed and second year subjects");
 
                 List<Subject> passedSubjects = subject.getSubjectsPassed(idCard);
-                int count = 0;
-                for (Subject s : passedSubjects) {
-                    count++;
-                }
-
-                if (count == 5) {
-                    System.out.println("The student has already passed the course");
+                if (passedSubjects.size() == 5) {
+                    System.out.println("The student has already passed the course, we cannot enroll again");
                     return;
                 } else {
                     List<Subject> failedSubjects = subject.getSubjectsFailed(idCard);
 
                     for (Subject s : failedSubjects) {
-                        score.createScore();
+                        score.enrollInSubject(session, enrollment, s);
+                        System.out.println(failedSubjects.size() + " score(s) created successfully");
                     }
 
                     List<Subject> secondYearSubjects = subject.getSubjectsSecondYear(idCourse);
                     for (Subject s : secondYearSubjects) {
-                        score.createScore();
+                        score.enrollInSubject(session, enrollment, s);
+                        System.out.println( secondYearSubjects.size() + " score(s) created successfully");
                     }
                 }
-                transaction.commit();
                 System.out.println("The student has been enrolled in the subjects failed and 2nd year subjects");
             }
-        } catch (Exception e) {
+            transaction.commit();
+
+        } catch (Exception e){
             if (transaction != null) {
                 transaction.rollback();
             }
             System.err.println("Error during enrollment: " + e.getMessage());
+            e.printStackTrace();
         }
-
     }
 
     public static void introScores (String idCard,int idCourse){

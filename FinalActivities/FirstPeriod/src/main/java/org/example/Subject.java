@@ -106,20 +106,26 @@ public class Subject {
     public List<Subject> getSubjectsFailed(String idCard) {
         try (Session session = SessionFactory.getSessionFactory().openSession()) {
             return  session.createNativeQuery(
-                            "SELECT * FROM subjectsPending_mps_2526(:studentId)"
+                            "SELECT * FROM _da_vtschool_2526.subjectsPending_mps_2526(:studentId)"
                     ).setParameter("studentId", idCard)
                     .addEntity(Subject.class)
                     .getResultList();
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
     public List<Subject> getSubjectsPassed(String idCard) {
         try (Session session = SessionFactory.getSessionFactory().openSession()) {
             return  session.createNativeQuery(
-                            "SELECT * FROM subjectsPassed_mps_2526(:studentId)"
+                            "SELECT * FROM _da_vtschool_2526.subjectsPassed_mps_2526(:studentId)"
                     ).setParameter("studentId", idCard)
                     .addEntity(Subject.class)
                     .getResultList();
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
