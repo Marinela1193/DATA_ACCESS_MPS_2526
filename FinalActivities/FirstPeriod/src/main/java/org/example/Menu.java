@@ -258,6 +258,7 @@ public class Menu {
     public static void introScores (String idCard,int idCourse){
 
         Student student = new Student();
+        student.setIdcard(idCard);
         if (!student.checkIdCard()) {
             System.err.println("IDCARD:  " + idCard + " is invalid, it must have 8 characteres.");
             return;
@@ -278,10 +279,13 @@ public class Menu {
 
             //We create a list of the subjects this student is enrolled and
             Score score = new Score();
-            List<Score> scoresStudent = score.getScores(idCard);
-            score.addScores(session, scoresStudent);
+            List<Score> scoresStudent = score.getScores(idCard,idCourse);
 
-            System.out.println("All scores updated successfully.");
+            if(scoresStudent.isEmpty()){
+                System.out.println("The student has no scores to be updated");
+                return;
+            }
+            score.addScores(session, scoresStudent);
 
         } catch (Exception e) {
             e.printStackTrace();

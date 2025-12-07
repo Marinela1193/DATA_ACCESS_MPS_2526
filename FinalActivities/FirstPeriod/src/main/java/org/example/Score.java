@@ -90,16 +90,19 @@ public class Score {
         }
     }
 
-    public List<Score> getScores(String idCard) {
+    public List<Score> getScores(String idCard, int idCourse) {
         try (Session session = SessionFactory.getSessionFactory().openSession()) {
             return session.createQuery(
                             "SELECT sc " +
                                     "FROM Score sc " +
-                                    "JOIN sc.enrollment e " +
-                                    "JOIN e.student st " +
-                                    "WHERE sc.score IS NULL AND st.idcard = :studentId",
+                                    "JOIN FETCH sc.enrollment e " +
+                                    "JOIN FETCH sc.subject s " +
+                                    "JOIN FETCH e.student st " +
+                                    "JOIN FETCH e.course c " +
+                                    "WHERE sc.score IS NULL AND st.idcard = :studentId AND c.id = :courseId",
                             Score.class
                     ).setParameter("studentId", idCard)
+                    .setParameter("courseId", idCourse)
                     .getResultList();
         }
     }
@@ -119,34 +122,42 @@ public class Score {
     public void addScores(Session session, List<Score> scores) {
         Scanner sc = new Scanner(System.in);
 
-        Transaction transaction = null;
+        Transaction transaction = session.beginTransaction();
 
-        for (Score score : scores) {
-            Subject s = score.getSubject();
-            int scoreValue;
+        try {
+            for (Score score : scores) {
 
-            while(true) {
+                Subject s = score.getSubject();
+                int scoreValue;
 
-                System.out.println("Introduce the score for subject: " + s.getName() + " (0-10 or 99 to skip)");
-                //we need to make sure first the score written goes between 0 - 10
-                scoreValue = sc.nextInt();
+                while (true) {
 
-                int checkValue = this.checkScorevalue(scoreValue);
+                    System.out.println("Introduce the score for subject: " + s.getName() + " (0-10 or 99 to skip)");
+                    //we need to make sure first the score written goes between 0 - 10
+                    scoreValue = sc.nextInt();
 
-                if (checkValue == 99) {
-                    continue;
-                }
-                if (checkValue == -1) {
+                    int checkValue = this.checkScorevalue(scoreValue);
+
+                    if (checkValue == 99) {
+                        break;
+                    }
+                    if (checkValue == -1) {
+                        continue;
+                    }
+
+                    score.setScore(scoreValue);
+                    session.merge(score);
+                    System.out.println("Score for subject " + s.getName() + " updated correctly.");
                     break;
                 }
-
-                score.setScore(scoreValue);
-                session.merge(score);
-                transaction.commit();
-                System.out.println("Score for subject " + s.getName() + " updated correctly.");
-                break;
             }
-            transaction.rollback();
+
+            transaction.commit();
+            System.out.println("All scores added correctly");
+
+        }catch (Exception e){
+            if (transaction != null) transaction.rollback();
+            throw new RuntimeException("Error updating scores", e);
         }
     }
 }
