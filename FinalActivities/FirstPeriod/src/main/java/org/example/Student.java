@@ -78,6 +78,14 @@ public class Student {
         this.enrollments = enrollments;
     }
 
+    public Student (){
+        this.idcard = null;
+        this.firstname = null;
+        this.lastname = null;
+        this.phone = null;
+        this.email = null;
+    }
+
     @Override
     public String toString() {
         return idcard + " " + firstname + " " + lastname + " " + phone + " " + email;
@@ -94,65 +102,95 @@ public class Student {
         return null;
     }
 
+    public Student getStudentByIdcard(String idCard) {
+        try(Session session = SessionFactory.getSessionFactory().openSession()){
+            Query myQuery = session.createQuery("SELECT s FROM Student s WHERE s.idcard = :idCard");
+            myQuery.setParameter("idCard", idcard);
+            return Student.class.cast(myQuery.getSingleResult());
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     public boolean exists() {
-        List<Student> studentList = this.getStudents();
-        for(Student student : studentList){
-            if(student.getIdcard().equals(this.idcard)){
-                return true;
-            }
+        try(Session session = SessionFactory.getSessionFactory().openSession()){
+            Student student = getStudentByIdcard(this.idcard);
+
+            return student != null;
         }
-        return false;
     }
 
-    public void addToDatabase(Student student) {
+    public boolean existsId(String idCard){
+        return getStudentByIdcard(idCard) != null;
+    }
 
-        Transaction transaction;
 
+    public boolean checkEmail(){
+        try {
+            String check = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+            return this.email.matches(check);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(this.getFirstname() + " has no valid email");
+        }
+    }
+
+    public boolean checkPhoneNumber(){
+        try{
+            return this.phone.matches("\\d{9}");
+        }catch (RuntimeException e) {
+            throw new RuntimeException(this.getFirstname() + " has no valid phone number");
+        }
+    }
+
+    public boolean checkIdCard(){
+        return this.idcard.length() == 8;
+    }
+
+    public boolean completedCourse(String idCard, int courseId) {
         try (Session session = SessionFactory.getSessionFactory().openSession()) {
+            Long count = session.createQuery(
+                            "SELECT COUNT(sub) " +
+                                    "FROM Subject sub " +
+                                    "JOIN SubjectCours c " +
+                                    "WHERE c.id = :courseId " +
+                                    "AND sub.id NOT IN (" +
+                                    "    SELECT s.subject.id " +
+                                    "    FROM Score s " +
+                                    "    JOIN s.enrollment e " +
+                                    "    JOIN e.student st " +
+                                    "    WHERE st.idcard = :studentId " +
+                                    "    AND s.score >= 5" +
+                                    ")",
+                            Long.class)
+                    .setParameter("courseId", courseId)
+                    .setParameter("studentId", idCard)
+                    .uniqueResult();
 
-            transaction = session.beginTransaction();
-            if(student != null) {
-
-                student = new Student();
-                student.setIdcard(getIdcard());
-                student.setFirstname(getFirstname());
-                student.setLastname(getLastname());
-                if(checkEmail(student.getEmail())) {
-                    student.setEmail(getEmail());
-                }else{
-                    System.out.println("Invalid email");
-                    return;
-                }
-
-                if(checkPhoneNumber(student.getPhone())){
-                    student.setPhone(String.valueOf(getPhone()));
-                }else{
-                    System.out.println("Invalid phone number");
-                    return;
-                }
-
-                session.persist(student);
-                transaction.commit();
-
-                System.out.println("Student added correctly");
-
-            }else {
-                session.close();
-            }
+            return count != null && count == 0;
         } catch (Exception e) {
-            throw new RuntimeException(e);
-
+            System.err.println("Error checking if student completed course: " + e.getMessage());
+            return false;
         }
     }
 
-    public boolean checkEmail(String email){
-        email = this.email;
-        String check = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        return email.matches(check);
-
-    }
-
-    public boolean checkPhoneNumber(String number){
-        return phone.matches("\\d{9}");
+    public List<Score> studentInfo(String idCard, int courseID){
+        try(Session session = SessionFactory.getSessionFactory().openSession()){
+            return session.createQuery(
+                            "SELECT sc " +
+                                    "FROM Score sc " +
+                                    "JOIN FETCH sc.enrollment e " +
+                                    "JOIN FETCH e.student st " +
+                                    "JOIN FETCH sc.subject sub " +
+                                    "WHERE st.idcard = :studentId " +
+                                    "AND e.course.id = :courseId " +
+                                    "ORDER BY e.year DESC",
+                            Score.class
+                    ).setParameter("studentId", idCard)
+                    .setParameter("courseId", courseID)
+                    .getResultList();
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

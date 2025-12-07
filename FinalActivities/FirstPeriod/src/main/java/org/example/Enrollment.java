@@ -70,31 +70,36 @@ public class Enrollment {
         this.scores = scores;
     }
 
-    public void enrollStudent(Student student) {
+    public boolean checkEnrollment(String idCard, int courseCode) {
+        try(Session session = SessionFactory.getSessionFactory().openSession()) {
+            Long count = session.createQuery(
+                            "FROM Enrollment e " +
+                                    "WHERE e.student.idcard = :studentId " +
+                                    "AND e.course.id = :courseId",
+                            Long.class
+                    )
+                    .setParameter("studentId", idCard)
+                    .setParameter("courseId", courseCode)
+                    .uniqueResult();
 
-        Transaction transaction;
-        Scanner sc = new Scanner(System.in);
+            return count != null && count > 0;
 
-        try (Session session = SessionFactory.getSessionFactory().openSession()) {
+        }
+    }
 
-            transaction = session.beginTransaction();
+    public void createEnrollment(String idCard, int courseCode) {
+        try(Session session = SessionFactory.getSessionFactory().openSession()) {
 
-            student = new Student();
-            student.setIdcard(getStudent().getIdcard());
-            System.out.println("What is the name of the student?");
-            String name = sc.nextLine();
-            student.setFirstname(name);
-            System.out.println("What is the last name of the student?");
-            String lastName = sc.nextLine();
-            student.setLastname(lastName);
-            System.out.println("What is the email of the student?");
-            String email = sc.nextLine();
-            student.setEmail(email);
-            System.out.println("What is the phone of the student?");
-            String phone = sc.nextLine();
-            student.setPhone(phone);
+            Enrollment enrollment = new Enrollment();
+            //in order to introduce the student in the first year
+            //we create the course c in order to assign the year 1
+            Cours c = session.find(Cours.class, course);
+            enrollment.setStudent(student);
+            enrollment.setCourse(c);
+            enrollment.setYear(2025);
+            //we add the student in all courses of 1 year
 
-            session.persist(student);
+            session.persist(enrollment);
         }
     }
 }
