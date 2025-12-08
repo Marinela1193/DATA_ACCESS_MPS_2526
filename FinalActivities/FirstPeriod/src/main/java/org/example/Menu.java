@@ -214,27 +214,36 @@ public class Menu {
 
                 }
             } else {
-                System.out.println("The student " + idCard + " is already enrolled in course: " + idCourse + " ,we will proceed with failed and second year subjects");
 
-                List<Subject> passedSubjects = subject.getSubjectsPassed(idCard);
-                if (passedSubjects.size() == 5) {
+                if(enrollment.getYear() == 2024 && subject.getSubjectsFailed(idCard).isEmpty()){
                     System.out.println("The student has already passed the course, we cannot enroll again");
                     return;
-                } else {
-                    List<Subject> failedSubjects = subject.getSubjectsFailed(idCard);
+                }
+                /*  List<Subject> passedSubjects = subject.getSubjectsPassed(idCard);
+                if (passedSubjects.size() == 5 && enroll.getYear()==2024) {
+                    System.out.println("The student has already passed the course, we cannot enroll again");
+                    return;
+                }*/
+                StringBuilder sb = new StringBuilder();
 
+                //System.out.println("The student " + idCard + " is already enrolled in course: " + idCourse + " ,we will proceed with failed and second year subjects");
+
+                List<Subject> secondYearSubjects = subject.getSubjectsSecondYear(idCourse);
+                for (Subject s : secondYearSubjects) {
+                    score.enrollInSubject(session, enrollment, s);
+                    sb.append(secondYearSubjects.size() + " score(s) created successfully\n");
+                }
+                List<Subject> failedSubjects = subject.getSubjectsFailed(idCard);
+                if(!failedSubjects.isEmpty()){
+                    sb.append("The student has pending subjects from the first year, we will enroll in them for the new course\n");
                     for (Subject s : failedSubjects) {
                         score.enrollInSubject(session, enrollment, s);
-                        System.out.println(failedSubjects.size() + " score(s) created successfully");
+                        sb.append(secondYearSubjects.size() + " score(s) created successfully\n");
                     }
 
-                    List<Subject> secondYearSubjects = subject.getSubjectsSecondYear(idCourse);
-                    for (Subject s : secondYearSubjects) {
-                        score.enrollInSubject(session, enrollment, s);
-                        System.out.println( secondYearSubjects.size() + " score(s) created successfully");
-                    }
                 }
-                System.out.println("The student has been enrolled in the subjects failed and 2nd year subjects");
+                sb.append("The student has been enrolled in the subjects failed and 2nd year subjects\n");
+
             }
             transaction.commit();
 
