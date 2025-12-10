@@ -2,8 +2,8 @@ package org.example;
 
 import jakarta.persistence.*;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +26,9 @@ public class Student {
 
     @Column(name = "email", length = 100)
     private String email;
+
+    @Column (name = "birthdate")
+    private Date birthdate;
 
     @OneToMany(mappedBy = "student")
     private Set<Enrollment> enrollments = new LinkedHashSet<>();
@@ -69,6 +72,10 @@ public class Student {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void setBirthdate(Date birthdate) { this.birthdate = birthdate; }
+
+    public Date getBirthdate() { return birthdate; }
 
     public Set<Enrollment> getEnrollments() {
         return enrollments;

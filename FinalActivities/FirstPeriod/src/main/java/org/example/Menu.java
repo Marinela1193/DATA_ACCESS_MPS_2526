@@ -119,7 +119,11 @@ public class Menu {
 
                     }
 
-                    if (!student.checkPhoneNumber()) {
+                    if (student.getPhone() == null){
+                        throw new RuntimeException("IDCARD:  " + student.getIdcard() + " does not have a phone number included, it is compulsory.");
+                    }
+
+                    if(!student.checkPhoneNumber()) {
                         throw new RuntimeException("IDCARD:  " + student.getIdcard() + " has an invalid phone number");
 
                     }
@@ -153,13 +157,15 @@ public class Menu {
                 return;
             }
 
+            if (student.getPhone() == null){
+                throw new RuntimeException("IDCARD:  " + student.getIdcard() + " does not have a phone number included, it is compulsory.");
+            }
             //check the IDCours exists
             Cours course = new Cours();
             if (!course.checkCourse(idCourse)) {
                 System.err.println("IDCourse: " + idCourse + " does not exist in the system.");
                 return;
             }
-
 
             List<Score> studentInfoList = student.studentInfo(idCard, idCourse);
             if (studentInfoList.isEmpty()) {
@@ -188,6 +194,11 @@ public class Menu {
                 System.err.println("IDCARD: " + idCard + " does not exist in the system.");
                 return;
             }
+
+            if (student.getPhone() == null){
+                throw new RuntimeException("IDCARD:  " + student.getIdcard() + " does not have a phone number included, it is compulsory.");
+            }
+
             if (course == null) {
                 System.err.println("IDCourse: " + idCourse + " does not exist in the system.");
                 return;

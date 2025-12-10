@@ -6,17 +6,16 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class StudentXmlParser extends DefaultHandler {
 
     protected String tagContent;
-
-
+    protected Date tagContent1;
     //we declare both so we can use them globally
     private List<Student> students;
     private Student currentStudent;
@@ -75,6 +74,8 @@ public class StudentXmlParser extends DefaultHandler {
                 case "phone":
                     currentStudent.setPhone(tagContent);
                     break;
+                case "birthdate":
+                    currentStudent.setBirthdate(tagContent1);
                 //when we find the end tag of student, this means that we have all information of this student
                 //we save the student within the object Student
                 //we reset the information to add a new student
