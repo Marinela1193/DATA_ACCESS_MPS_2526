@@ -188,4 +188,20 @@ public class Score {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Score> getAllScores() {
+        try (Session session = SessionFactory.getSessionFactory().openSession()) {
+            return session.createQuery(
+                            "SELECT sc " +
+                                    "FROM Score sc " +
+                                    "JOIN FETCH sc.enrollment e " +
+                                    "JOIN FETCH sc.subject s " +
+                                    "JOIN FETCH e.student st " +
+                                    "JOIN FETCH e.course c " +
+                                    "WHERE sc.score IS NULL",
+                            Score.class
+                    ).getResultList();
+        }
+    }
+
 }

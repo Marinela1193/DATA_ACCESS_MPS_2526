@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -85,6 +86,13 @@ public class Menu {
                     System.err.println("Two parameters required");
                     helpScreen();
                 }
+            case "-c":
+            case "--close":
+                if(this.args.length > 2) {
+                    forceClosure();
+                }else {
+                    closeYear();
+                }
                 break;
         }
     }
@@ -97,6 +105,7 @@ public class Menu {
         System.out.println("-e, --enroll {studentId} {courseId}: enroll a student in a course");
         System.out.println("-p, --print {studentId} {courseId} [-f / --file]: show the scores of a student in a course");
         System.out.println("-q, --qualify {studentId} {courseId}: introduce the scores obtained by the student in the course.");
+        System.out.println("-c, --close [-f / --force]: will force to close an academic year");
 
     }
 
@@ -369,6 +378,50 @@ public class Menu {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void closeYear(){
+        try(Session session = SessionFactory.getSessionFactory().openSession()) {
+            int month = LocalDate.now().getMonthValue();
+            Score score = new Score();
+
+            switch (month) {
+                case 1, 2, 3, 4, 5, 6, 10, 11, 12:
+                    List<Score> scoreList = score.getAllScores();
+
+                    score.addScores(session, scoreList);
+                    System.out.println("All pending subjects have been scored. Year closed.");
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                    System.err.println("You cannot close the year during this month");
+                    break;
+            }
+        }
+    }
+
+    public static void forceClosure(){
+        try(Session session = SessionFactory.getSessionFactory().openSession()) {
+            System.out.println("You are forcing the closure of the year");
+
+            Score score = new Score();
+
+            List<Score> scoreList = score.getAllScores();
+            score.addScores(session, scoreList);
+
+            System.out.println("All pending subjects have been scored. Year closed.");
+
+        }
+    }
+
+    public void prueba () {
+
+        Score score = new Score();
+        List<Score> scoreList = score.getAllScores();
+        for(Score s : scoreList){
+            System.out.println(s.toString());
         }
     }
 }
