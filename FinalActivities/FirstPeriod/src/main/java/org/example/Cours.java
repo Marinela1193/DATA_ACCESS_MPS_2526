@@ -77,8 +77,8 @@ public class Cours {
             Long count = session.createQuery(
                             "SELECT COUNT(sc.subject) " +
                                     "FROM SubjectCours sc " +
-                                    "WHERE sc.course.id = :courseId", Long.class)
-                    .setParameter("courseId", courseId)
+                                    "WHERE sc.course.id = :code", Long.class)
+                    .setParameter("code", courseId)
                     .uniqueResult();
 
             return count != null ? count.intValue() : 0;
@@ -90,8 +90,8 @@ public class Cours {
 
     public Cours getCourseById(int courseId) {
         try(Session session = SessionFactory.getSessionFactory().openSession()){
-            Query myQuery = session.createQuery("SELECT c FROM Cours c WHERE c.id =  :courseId");
-            myQuery.setParameter("courseId", courseId);
+            Query myQuery = session.createQuery("SELECT c FROM Cours c WHERE c.id =  :code");
+            myQuery.setParameter("code", courseId);
             return Cours.class.cast(myQuery.getSingleResult());
         }catch (Exception e) {
             System.out.println(e.getMessage());
