@@ -3,6 +3,11 @@ package org.example;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,6 +27,8 @@ public class Menu {
             helpScreen();
             return;
         }
+
+
 
         String arg = args[0];
         switch (arg) {
@@ -52,12 +59,19 @@ public class Menu {
                 break;
             case "-p":
             case "--print":
+                if(this.args.length == 3) {
+                    String idCard = this.args[1];
+                    int courseid  = Integer.parseInt(this.args[2]);
+                    String filename = this.args[3];
+                    createFileStudents(idCard,courseid);
+                }
                 if (this.args.length > 2) {
                     String idCard = this.args[1];
                     int courseid  = Integer.parseInt(this.args[2]);
                     printScores(idCard, courseid);
+
                 } else {
-                    System.err.println("Two parameters required");
+                    System.err.println("Minimum two parameters required");
                     helpScreen();
                 }
                 break;
@@ -81,7 +95,7 @@ public class Menu {
         System.out.println("-h, --help: show this help");
         System.out.println("-a, --add {filename.xml}: add the students in the XML file to the database.");
         System.out.println("-e, --enroll {studentId} {courseId}: enroll a student in a course");
-        System.out.println("-p, --print {studentId} {courseId}: show the scores of a student in a course");
+        System.out.println("-p, --print {studentId} {courseId} [-f / --file]: show the scores of a student in a course");
         System.out.println("-q, --qualify {studentId} {courseId}: introduce the scores obtained by the student in the course.");
 
     }
@@ -157,9 +171,9 @@ public class Menu {
                 return;
             }
 
-            if (student.getPhone() == null){
+            /*if (student.getPhone() == null){
                 throw new RuntimeException("IDCARD:  " + student.getIdcard() + " does not have a phone number included, it is compulsory.");
-            }
+            }*/
             //check the IDCours exists
             Cours course = new Cours();
             if (!course.checkCourse(idCourse)) {
@@ -175,6 +189,60 @@ public class Menu {
                 scores.printScores(studentInfoList);
             }
 
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void createFileStudents(String idCard, int idCourse){
+
+        try (Session session = SessionFactory.getSessionFactory().openSession()) {
+
+            //check that the IDCard is valid
+            Student student = new Student();
+            student.setIdcard(idCard);
+            if (!student.checkIdCard()) {
+                System.err.println("IDCARD:  " + idCard + " is invalid, it must have 8 characters.");
+                return;
+            }
+            //check the IDCard exists
+            if (!student.existsId(idCard)) {
+                System.err.println("IDCARD:  " + idCard + " does not exist in the system");
+                return;
+            }
+
+            //if (student.getPhone() == null){
+                //throw new RuntimeException("IDCARD:  " + student.getIdcard() + " does not have a phone number included, it is compulsory.");
+            //}
+            //check the IDCours exists
+            Cours course = new Cours();
+            if (!course.checkCourse(idCourse)) {
+                System.err.println("IDCourse: " + idCourse + " does not exist in the system.");
+                return;
+            }
+
+            List<Score> studentInfoList = student.studentInfo(idCard, idCourse);
+            if (studentInfoList.isEmpty()) {
+                System.out.println("No scores found for student " + idCard + " in course " + idCourse);
+            } else {
+                Score scores = new Score();
+                scores.printScores(studentInfoList);
+
+
+                try {
+                    OutputStream file = new FileOutputStream("students.txt");
+                    for (Score s : studentInfoList) {
+                        //int character;
+                        //if ((character = value()) != -1) {
+                        file.write(student.toString().getBytes());
+                        //}
+                    }
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }catch (Exception e) {
             e.printStackTrace();
         }
