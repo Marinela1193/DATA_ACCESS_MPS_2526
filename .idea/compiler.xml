@@ -16,8 +16,5 @@
         <module name="FirstPeriod" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="FinalActivities" target="19" />
-    </bytecodeTargetLevel>
   </component>
 </project>

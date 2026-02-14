@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DATA_ACCESS_MPS_2526.iml" filepath="$PROJECT_DIR$/.idea/DATA_ACCESS_MPS_2526.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FirstPeriod.iml" filepath="$PROJECT_DIR$/FirstPeriod.iml" />
       <module fileurl="file://$PROJECT_DIR$/Tema2/Tema2.iml" filepath="$PROJECT_DIR$/Tema2/Tema2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Tema4.iml" filepath="$PROJECT_DIR$/Tema4.iml" />
       <module fileurl="file://$PROJECT_DIR$/FinalActivities/FirstPeriod/src/main/main.iml" filepath="$PROJECT_DIR$/FinalActivities/FirstPeriod/src/main/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/FinalActivities/src/main/main2.iml" filepath="$PROJECT_DIR$/FinalActivities/src/main/main2.iml" />
       <module fileurl="file://$PROJECT_DIR$/FinalActivities/src/test/test.iml" filepath="$PROJECT_DIR$/FinalActivities/src/test/test.iml" />
