@@ -9,9 +9,12 @@
         <module name="Tema4" />
         <module name="Tema3" />
       </profile>
+      <profile name="Annotation profile for Final-Activities" enabled="true">
+        <sourceOutputDir name="../../Final-Activities/FirstPeriod/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../Final-Activities/FirstPeriod/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="FirstPeriod" />
+      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="FinalActivities" target="19" />
-    </bytecodeTargetLevel>
   </component>
 </project>
