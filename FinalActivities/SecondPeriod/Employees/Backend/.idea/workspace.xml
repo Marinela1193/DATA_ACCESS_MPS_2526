@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2e745fb8-1f9f-4713-97a4-a9fc9e6aee56" name="Changes" comment="creamos los testers" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="com.intellij.jpb.JpaEntity" />
+        <option value="Interface" />
+        <option value="Spring Service" />
+        <option value="Spring Controller" />
+        <option value="Spring REST Controller" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Marinela1193&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Marinela1193/EMPLOYEES.git&quot;,
+    &quot;accountId&quot;: &quot;c41878ef-4bda-4336-a6e1-92f756aad169&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="38a3Bru8qG11niIYnXIEb1D5hmn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Employees2Application.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/Desktop/FP20/Spring/Employees2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Employees2Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="Employees2" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.employees2.Employees2Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2e745fb8-1f9f-4713-97a4-a9fc9e6aee56" name="Changes" comment="" />
+      <created>1769023723414</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1769023723414</updated>
+      <workItem from="1769023724281" duration="1859000" />
+      <workItem from="1769029755951" duration="488000" />
+      <workItem from="1769107676884" duration="1642000" />
+      <workItem from="1769109360437" duration="4172000" />
+      <workItem from="1769452934179" duration="3000" />
+      <workItem from="1769452981834" duration="103000" />
+      <workItem from="1769624177035" duration="5814000" />
+      <workItem from="1769703516371" duration="13693000" />
+      <workItem from="1769800205859" duration="603000" />
+      <workItem from="1769852560034" duration="5118000" />
+      <workItem from="1769868158685" duration="2725000" />
+      <workItem from="1769979715033" duration="838000" />
+      <workItem from="1770061478708" duration="5077000" />
+      <workItem from="1770139688096" duration="7715000" />
+      <workItem from="1771440117433" duration="13000" />
+    </task>
+    <task id="LOCAL-00001" summary="creación bd">
+      <option name="closed" value="true" />
+      <created>1769109323506</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1769109323506</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init">
+      <option name="closed" value="true" />
+      <created>1769109597395</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1769109597395</updated>
+    </task>
+    <task id="LOCAL-00003" summary="init">
+      <option name="closed" value="true" />
+      <created>1769109611601</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1769109611601</updated>
+    </task>
+    <task id="LOCAL-00004" summary="employeesCRUD">
+      <option name="closed" value="true" />
+      <created>1769111539048</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1769111539048</updated>
+    </task>
+    <task id="LOCAL-00005" summary="mejora relacnon conrolre  service">
+      <option name="closed" value="true" />
+      <created>1769628663584</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1769628663584</updated>
+    </task>
+    <task id="LOCAL-00006" summary="completa DTO empleado y servicio">
+      <option name="closed" value="true" />
+      <created>1769630927597</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1769630927597</updated>
+    </task>
+    <task id="LOCAL-00007" summary="create DTO with information given">
+      <option name="closed" value="true" />
+      <created>1769706697440</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1769706697440</updated>
+    </task>
+    <task id="LOCAL-00008" summary="create DTO with information given">
+      <option name="closed" value="true" />
+      <created>1769710699598</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1769710699598</updated>
+    </task>
+    <task id="LOCAL-00009" summary="corregimos DTO employee">
+      <option name="closed" value="true" />
+      <created>1769710711882</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1769710711882</updated>
+    </task>
+    <task id="LOCAL-00010" summary="corrección controller">
+      <option name="closed" value="true" />
+      <created>1769711981030</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1769711981030</updated>
+    </task>
+    <task id="LOCAL-00011" summary="corrección controller">
+      <option name="closed" value="true" />
+      <created>1769712134100</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1769712134100</updated>
+    </task>
+    <task id="LOCAL-00012" summary="corrección controller">
+      <option name="closed" value="true" />
+      <created>1769712205995</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1769712205995</updated>
+    </task>
+    <task id="LOCAL-00013" summary="corrección controller">
+      <option name="closed" value="true" />
+      <created>1769712294615</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1769712294615</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Implementamos DAOS">
+      <option name="closed" value="true" />
+      <created>1769713038209</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1769713038209</updated>
+    </task>
+    <task id="LOCAL-00015" summary="actaluzación controlador con métodos service layer">
+      <option name="closed" value="true" />
+      <created>1769714137141</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1769714137141</updated>
+    </task>
+    <task id="LOCAL-00016" summary="creación service layer">
+      <option name="closed" value="true" />
+      <created>1769714148128</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1769714148128</updated>
+    </task>
+    <task id="LOCAL-00017" summary="validation">
+      <option name="closed" value="true" />
+      <created>1769718748732</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1769718748732</updated>
+    </task>
+    <task id="LOCAL-00018" summary="create index.html">
+      <option name="closed" value="true" />
+      <created>1769720696919</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1769720696919</updated>
+    </task>
+    <task id="LOCAL-00019" summary="create style.cs">
+      <option name="closed" value="true" />
+      <created>1769720706076</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1769720706076</updated>
+    </task>
+    <task id="LOCAL-00020" summary="create viewController">
+      <option name="closed" value="true" />
+      <created>1769720722247</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1769720722247</updated>
+    </task>
+    <task id="LOCAL-00021" summary="creación formulario dar de alta departamento">
+      <option name="closed" value="true" />
+      <created>1769853532256</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1769853532256</updated>
+    </task>
+    <task id="LOCAL-00022" summary="actualización para crear y actualizar departamento">
+      <option name="closed" value="true" />
+      <created>1769853553056</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1769853553056</updated>
+    </task>
+    <task id="LOCAL-00023" summary="añadimos notificación de alta">
+      <option name="closed" value="true" />
+      <created>1769853640720</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1769853640720</updated>
+    </task>
+    <task id="LOCAL-00024" summary="colores mensajes ok y error">
+      <option name="closed" value="true" />
+      <created>1769856939737</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1769856939737</updated>
+    </task>
+    <task id="LOCAL-00025" summary="añadir estilo a mensajes ok y error">
+      <option name="closed" value="true" />
+      <created>1769856961645</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1769856961645</updated>
+    </task>
+    <task id="LOCAL-00026" summary="añadir estilo a mensajes ok y error">
+      <option name="closed" value="true" />
+      <created>1769857063715</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1769857063715</updated>
+    </task>
+    <task id="LOCAL-00027" summary="correción nombre columnas">
+      <option name="closed" value="true" />
+      <created>1769857475376</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1769857475376</updated>
+    </task>
+    <task id="LOCAL-00028" summary="creación html alta empleado">
+      <option name="closed" value="true" />
+      <created>1769857606759</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1769857606759</updated>
+    </task>
+    <task id="LOCAL-00029" summary="creamos @ empleados">
+      <option name="closed" value="true" />
+      <created>1769858405797</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1769858405797</updated>
+    </task>
+    <task id="LOCAL-00030" summary="actualizamos nombre columnas correctamente">
+      <option name="closed" value="true" />
+      <created>1769858422360</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1769858422360</updated>
+    </task>
+    <task id="LOCAL-00031" summary="añadimos tabla empleados">
+      <option name="closed" value="true" />
+      <created>1769858435461</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1769858435461</updated>
+    </task>
+    <task id="LOCAL-00032" summary="arreglamos error">
+      <option name="closed" value="true" />
+      <created>1769869222811</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1769869222811</updated>
+    </task>
+    <task id="LOCAL-00033" summary="creamos pantalla y añadimos código">
+      <option name="closed" value="true" />
+      <created>1769869256470</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1769869256470</updated>
+    </task>
+    <task id="LOCAL-00034" summary="actualizamos con empleados">
+      <option name="closed" value="true" />
+      <created>1769869270469</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1769869270470</updated>
+    </task>
+    <task id="LOCAL-00035" summary="métodos filtro empleados">
+      <option name="closed" value="true" />
+      <created>1769870519500</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1769870519500</updated>
+    </task>
+    <task id="LOCAL-00036" summary="métodos filtro empleados y depto">
+      <option name="closed" value="true" />
+      <created>1769870548335</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1769870548335</updated>
+    </task>
+    <task id="LOCAL-00037" summary="métodos filtro empleados y depto">
+      <option name="closed" value="true" />
+      <created>1769870553579</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1769870553579</updated>
+    </task>
+    <task id="LOCAL-00038" summary="creamos controlador DEPTO y su servicio">
+      <option name="closed" value="true" />
+      <created>1770064512225</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1770064512225</updated>
+    </task>
+    <task id="LOCAL-00039" summary="actualizamos">
+      <option name="closed" value="true" />
+      <created>1770064530410</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1770064530410</updated>
+    </task>
+    <task id="LOCAL-00040" summary="actualizamos métodos controlador y entidades DAO">
+      <option name="closed" value="true" />
+      <created>1770067269626</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1770067269626</updated>
+    </task>
+    <task id="LOCAL-00041" summary="añadimos dependencia para security">
+      <option name="closed" value="true" />
+      <created>1770152819401</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1770152819401</updated>
+    </task>
+    <task id="LOCAL-00042" summary="creamos los testers">
+      <option name="closed" value="true" />
+      <created>1770152849148</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1770152849148</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="validation" />
+    <MESSAGE value="create index.html" />
+    <MESSAGE value="create style.cs" />
+    <MESSAGE value="create viewController" />
+    <MESSAGE value="creación formulario dar de alta departamento" />
+    <MESSAGE value="actualización para crear y actualizar departamento" />
+    <MESSAGE value="añadimos notificación de alta" />
+    <MESSAGE value="colores mensajes ok y error" />
+    <MESSAGE value="añadir estilo a mensajes ok y error" />
+    <MESSAGE value="correción nombre columnas" />
+    <MESSAGE value="creación html alta empleado" />
+    <MESSAGE value="creamos href y tabla empleados" />
+    <MESSAGE value="creamos @ empleados" />
+    <MESSAGE value="actualizamos nombre columnas correctamente" />
+    <MESSAGE value="añadimos tabla empleados" />
+    <MESSAGE value="arreglamos error" />
+    <MESSAGE value="creamos pantalla y añadimos código" />
+    <MESSAGE value="actualizamos con empleados" />
+    <MESSAGE value="métodos filtro empleados" />
+    <MESSAGE value="métodos filtro empleados y depto" />
+    <MESSAGE value="creamos controlador DEPTO y su servicio" />
+    <MESSAGE value="actualizamos" />
+    <MESSAGE value="actualizamos métodos controlador y entidades DAO" />
+    <MESSAGE value="añadimos dependencia para security" />
+    <MESSAGE value="creamos los testers" />
+    <option name="LAST_COMMIT_MESSAGE" value="creamos los testers" />
+  </component>
+</project>

@@ -1,0 +1,23 @@
+<h1>Crear Nuevo Empleado</h1>
+<form action="#" th:action="@{/altaemployee}" th:object="${employee}" method="post">
+    <div class="form-group">
+        <label for="empno">Número de Empleado:</label>
+        <input type="text" id="empno" name="empno" required>
+    </div>
+    <div class="form-group">
+        <label for="ename">Nombre:</label>
+        <input type="text" id="ename" name="ename" required>
+    </div>
+    <div class="form-group">
+        <label for="job">Puesto de trabajo:</label>
+        <input type="text" id="job" name="job" required>
+    </div>
+    <div class="form-group">
+        <label for="deptno">Departamento:</label>
+        <input type="text" id="deptno" name="department.deptno" required>
+    </div>
+    <button class="form_button" type="submit">Crear Empleado</button>
+    <div th:if="${message}" class="${tipo_operacion+'_message}">
+        <p th:text="${message}"></p>
+    </div>
+</form>

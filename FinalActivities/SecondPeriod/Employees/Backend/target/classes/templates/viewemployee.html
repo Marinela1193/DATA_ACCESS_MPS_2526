@@ -1,0 +1,49 @@
+<a href="http://localhost:8080/api/verempleados" class="button">Ver Empleados</a>
+
+<h1>Lista de Empleados</h1>
+<select id="selectDepartamento" onchange="cambiarDepartamento()">
+    <option value="">Selecciona un departamento</option>
+    <option th:each="departamento : ${departamentos}"
+            th:value="${departamento.depno}"
+            th:text="${departamento.dname}">
+    </option>
+</select>
+<h1>Lista de Empleados</h1>
+<select id="selectJobPosition" onchange="cambiarPuestoTrabajo()">
+    <option value="">Selecciona un puesto de trabajo</option>
+    <option th:each="employee : ${employees}"
+            th:value="${employee.job}"
+            th:text="${employee.job}">
+    </option>
+</select>
+<table>
+    <thead>
+    <th>Número de Empleado</th>
+    <th>Nombre</th>
+    <th>Puesto de trabajo</th>
+    <th>Departamento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="empleado : ${empleados}">
+        <td th:text="${empleado.empno}"></td>
+        <td th:text="${empleado.ename}"></td>
+        <td th:text="${empleado.job}"></td>
+        <td th:text="${empleado.deptno}"></td>
+        <td><a th:href="${'/verempleado?id='+empleado.empno}">Detalles</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    function cambiarDepartamento() {
+        var depno = document.getElementById("selectDepartamento").value;
+        window.location.href = "/verempleados?depno=" + depno;
+    }
+</script>
+<script>
+    function cambiarPuestoTrabajo() {
+        var job = document.getElementById("selectJob").value;
+        window.location.href = "/verempleados?job=" + job;
+    }
+</script>

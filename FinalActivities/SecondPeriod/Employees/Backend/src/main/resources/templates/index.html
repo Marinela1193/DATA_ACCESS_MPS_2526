@@ -1,0 +1,18 @@
+<a href="http://localhost:8080/api/verdepartamentos" class="button">Ver Departamentos</a>
+
+<table>
+    <thead>
+        <th>Número de Departamento</th>
+        <th>Nombre</th>
+        <th>Ubicación</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="departamento : ${departamentos}">
+        <td th:text="${departamento.depno}"></td>
+        <td th:text="${departamento.dname}"></td>
+        <td th:text="${departamento.loc}"></td>
+    </tr>
+    </tbody>
+</table>
+

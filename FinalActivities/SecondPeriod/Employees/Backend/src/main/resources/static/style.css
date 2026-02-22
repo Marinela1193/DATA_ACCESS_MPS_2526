@@ -1,0 +1,9 @@
+.ok_message {
+    background-color: forestgreen;
+    color: antiquewhite;
+}
+
+.error_message {
+    background-color: crimson;
+    color: antiquewhite;
+}
